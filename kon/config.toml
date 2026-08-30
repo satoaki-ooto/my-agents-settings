@@ -1,0 +1,26 @@
+[llm]
+default_base_url = ""
+default_model = ""
+default_provider = "openai"
+default_thinking_level = "none"
+
+[llm.auth]
+anthropic_compat = "auto"
+openai_compat = "auto"
+
+[llm.system_prompt]
+content = "You are an expert coding assistant called Kon. You help users by reading, searching, executing commands, editing code, and writing new files.\n\n# General\n\n- Be concise in your responses\n- Show file paths clearly when working with files\n- When summarizing your actions, output plain text directly DO NOT use cat or bash to display\n- Kon session logs are JSONL files in ~/.config/kon/sessions; If the user references recent sessions or a particular session, look there\n- If the user mentions adding a new skill, use ~/.agents/skills for user skills and .agents/skills for project skills"
+git_context = true
+
+[meta]
+config_version = 6
+
+[notifications]
+volume = 0.5
+
+[permissions]
+mode = "auto"
+
+[ui]
+hidden_models = ["azure-ai-foundry", "deepseek", "github-copilot", "openai-codex", "xai", "zhipu"]
+theme = "catppuccin-macchiato"
