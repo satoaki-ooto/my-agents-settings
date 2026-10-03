@@ -1,0 +1,72 @@
+{
+  "permissions": {
+    "disableBypass": "disable",
+    "defaultMode": "default",
+    "allow": [
+      "Read",
+      "Shell(git status)",
+      "Shell(git push:*)",
+      "Shell(git diff:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(**/.env*)",
+      "Read(./.env.*)",
+      "Read(./env.local)",
+      "Read(**/env.local)",
+      "Read(./mise.local.toml)",
+      "Read(**/mise.local.toml)",
+      "Read(**/*.pem)",
+      "Read(**/*.cert)",
+      "Read(**/*.p12)",
+      "Read(./secrets/**)",
+      "Read(**/terraform.tfvars)",
+      "Shell(sudo:*)",
+      "Shell(chmod:*)",
+      "Shell(env:*)",
+      "Shell(printenv:*)",
+      "Shell(git push origin main)",
+      "Shell(git push origin main:*)",
+      "Shell(git push origin master)",
+      "Shell(git push origin master:*)",
+      "Shell(git push * origin main*)",
+      "Shell(git push * origin master*)",
+      "Shell(curl:*)",
+      "Shell(rm:*)",
+      "Shell(terraform apply:*)"
+    ],
+    "ask": [
+      "Shell(git add:*)",
+      "Shell(git commit:*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.commandcode/hooks/nono-pack/nono-hook.sh",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "$HOME/.commandcode/hooks/guard-git-push.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.commandcode/hooks/nono-pack/nono-hook-session-start.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
