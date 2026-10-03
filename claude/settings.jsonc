@@ -1,0 +1,77 @@
+{
+  "env": {
+    "ENABLE_TOOL_SEARCH": "true"
+  },
+  "permissions": {
+    "allow": [
+      "Read",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "Edit(src/**)",
+      "Edit(docs/**)",
+      "Edit(script/**)",
+      "Edit(scripts/**)",
+      "Edit(go.mod)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(**/env*)",
+      "Read(./.env.*)",
+      "Read(./mise.local.toml)",
+      "Read(**/mise.local.toml)",
+      "Read(**/*.pem)",
+      "Read(**/*.cert)",
+      "Read(**/*.p12)",
+      "Read(./secrets/**)",
+      "Read(**/terraform.tfvars)",
+      "Bash(sudo:*)",
+      "Bash(chmod:*)",
+      "Bash(env:*)",
+      "Bash(printenv:*)",
+      "Bash(git push origin main)",
+      "Bash(git push origin master)",
+      "Bash(git push origin main *)",
+      "Bash(git push origin master *)",
+      "Bash(git push * main)",
+      "Bash(git push * master)",
+      "Bash(git push *:main*)",
+      "Bash(git push *:master*)",
+      "Bash(git push *--force*)",
+      "Bash(git push *-f *)",
+      "Bash(curl:*)",
+      "Bash(rm:*)"
+    ],
+    "ask": [
+      "Bash(git commit:*)"
+    ],
+    "defaultMode": "auto"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command",
+            "command": "$HOME/.claude/hooks/guard-git-push.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "model": "sonnet[1m]",
+  "enabledPlugins": {
+    "nono@nolabs-ai": true
+  },
+  "effortLevel": "medium",
+  "modelSettings": {
+    "claude-sonnet-5-5": {
+      "effortLevel": "medium"
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
+  "theme": "auto"
+}
